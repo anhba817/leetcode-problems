@@ -7,4 +7,4 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 enable_testing()
 
-add_subdirectory(2528-maximize-the-minimum-powered-city)
+add_subdirectory(src)
