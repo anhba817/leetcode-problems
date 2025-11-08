@@ -1,3 +1,5 @@
 node_modules/
 coverage/
 build/
+.venv/
+__pycache__/
