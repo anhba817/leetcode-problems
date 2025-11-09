@@ -17,4 +17,12 @@ describe("Maximize the Minimum Powered City", () => {
     const result = maxPower([1, 2, 4, 5, 0], 1, 2);
     expect(result).toEqual(5);
   });
+  test("Example case 2", () => {
+    // Input: stations = [4,4,4,4], r = 0, k = 3
+    // Output: 4
+    // Explanation:
+    // It can be proved that we cannot make the minimum power of a city greater than 4.
+    const result = maxPower([4,4,4,4], 0, 3);
+    expect(result).toEqual(4);
+  });
 });
