@@ -14,3 +14,6 @@ python_files = [
     "test_*.py",
     "__tests__/*.py"
 ]
+pythonpath = [
+    "src/disjoint-sets-union-find"
+]

@@ -1,0 +1,2 @@
+add_library(disjoint_sets_utils src/disjoint_sets.cpp)
+target_include_directories(disjoint_sets_utils PUBLIC include)

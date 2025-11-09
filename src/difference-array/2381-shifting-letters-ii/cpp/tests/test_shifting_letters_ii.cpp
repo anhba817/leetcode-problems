@@ -1,45 +1,45 @@
 #include "shifting_letters_ii.hpp"
 
-#include <cstdlib>
-#include <iostream>
-#include <vector>
+#include <gtest/gtest.h>
+
 #include <string>
+#include <vector>
 
 namespace
 {
-  struct TestCase
-  {
-    std::string s;
-    std::vector<std::vector<int>> shifts;
-    std::string expected;
-  };
+struct TestCase
+{
+  std::string s;
+  std::vector<std::vector<int>> shifts;
+  std::string expected;
+};
+} // namespace
+
+class ShiftingLettersTest : public ::testing::TestWithParam<TestCase>
+{};
+
+TEST_P(ShiftingLettersTest, ProducesExpectedString)
+{
+  const TestCase &test = GetParam();
+  EXPECT_EQ(test.expected, shifting_letters(test.s, test.shifts));
 }
 
-int main()
-{
-  const std::vector<TestCase> cases = {
-      {"abc", {
-                  {0, 1, 0},
+INSTANTIATE_TEST_SUITE_P(
+    Examples,
+    ShiftingLettersTest,
+    ::testing::Values(
+        TestCase{"abc",
+                 {{0, 1, 0},
                   {1, 2, 1},
-                  {0, 2, 1},
-              },
-       "ace"},
-      {"dztz", {
-                   {0, 0, 0},
-                   {1, 1, 1},
-               },
-       "catz"}};
+                  {0, 2, 1}},
+                 "ace"},
+        TestCase{"dztz",
+                 {{0, 0, 0},
+                  {1, 1, 1}},
+                 "catz"}));
 
-  for (const auto &test : cases)
-  {
-    const std::string actual = shifting_letters(test.s, test.shifts);
-    if (actual != test.expected)
-    {
-      std::cerr << "Expected " << test.expected << " but got " << actual << "\n";
-      return EXIT_FAILURE;
-    }
-  }
-
-  std::cout << "All tests passed\n";
-  return EXIT_SUCCESS;
+int main(int argc, char **argv)
+{
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }
