@@ -1,4 +1,4 @@
-"""Greedy + binary-search solution for LeetCode 2528."""
+"""Greedy + binary-search solution for LeetCode 2528 using a difference array."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ from typing import List
 
 
 def max_power(stations: List[int], r: int, k: int) -> int:
-    """Return the maximum achievable minimum power across all cities."""
+    """Binary search the best minimum power while simulating coverage with a diff array."""
 
     n = len(stations)
     if n == 0:
@@ -21,9 +21,10 @@ def max_power(stations: List[int], r: int, k: int) -> int:
         diff[right] -= power
 
     def can(target: int) -> bool:
+        """Return True if we can raise every city to at least `target` power."""
         remaining = k
         running = 0
-        local_diff = diff.copy()
+        local_diff = diff.copy()  # mutable prefix contributions during this feasibility check
 
         for city in range(n):
             running += local_diff[city]
@@ -33,7 +34,7 @@ def max_power(stations: List[int], r: int, k: int) -> int:
                     return False
                 remaining -= need
                 running += need
-                window_end = min(n, city + 2 * r + 1)
+                window_end = min(n, city + 2 * r + 1)  # extra stations stop affecting after this index
                 local_diff[window_end] -= need
         return True
 
