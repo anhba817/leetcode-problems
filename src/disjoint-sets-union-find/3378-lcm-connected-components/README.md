@@ -20,8 +20,8 @@ The four connected components are `(2, 4)`, `(3)`, `(8)`, `(9)`.
 **Example 2:**
 
 > **Input**: `nums = [2,4,8,3,9,12], threshold = 10`  
-**Output**: `2`
-Explanation: 
+**Output**: `2`  
+**Explanation:**  
 ![3378-example-2](https://assets.leetcode.com/uploads/2024/10/31/example1.png)  
 The two connected components are `(2, 3, 4, 8, 9)`, and `(12)`.
 
